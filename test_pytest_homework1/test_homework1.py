@@ -9,7 +9,6 @@ class SimpleTypeDataClass:
         self.b = b
         self.some_string = some_string
 
-
 # тесты для простых типов данных
 class TestSimpleTypeClass:
 
@@ -27,6 +26,11 @@ class TestSimpleTypeClass:
     def test_string_length(self, data_fixture):
         string = data_fixture.some_string
         assert len(string) < 25
+
+    # тест на сравнение суммы
+    def test_ass (self, data_fixture):
+        assert data_fixture.a + data_fixture.b < 10
+
 
     # тест на данные в списке
     def test_char_list(self, data_fixture):
@@ -69,14 +73,17 @@ def data_structures_fixture(session_fixture):
 # тесты для data structures
 class TestDataStructureClass:
 
+    # проверка значения в словаре по ключу(?)
     def test_dict(self, data_structures_fixture):
         my_dict = data_structures_fixture.my_dict
         assert my_dict['second'] == 2
 
+    # проверка сравнения значения по номеру
     def test_tuple(self, data_structures_fixture):
         my_tuple = data_structures_fixture.my_tuple
         assert my_tuple[3] == 4
 
+    #сравнение рассматриваемого множества с указанным
     def test_set(self, data_structures_fixture):
         my_set = data_structures_fixture.my_set
         assert my_set.issuperset({2, 3}) == True
@@ -89,8 +96,16 @@ def set_data_fixture():
     return my_set
 
 
-# тестирования set
+# тестирования сравнение set
 def test_set(set_data_fixture):
     set_a = set_data_fixture
     set_b = {3, 2, 3, 1}
     assert set_a == set_b
+
+# проверка суммы набора
+def test_set_sum(set_data_fixture):
+    assert sum(set_data_fixture) == 6
+
+# проверка минимального значения в наборе
+def test_set_ass(set_data_fixture):
+    assert min(set_data_fixture) == 1
